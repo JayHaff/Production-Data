@@ -1,0 +1,721 @@
+<Window x:Class="kv_repair.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+
+        xmlns:local="clr-namespace:kv_repair"
+        xmlns:DVC="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="700" Width="1250">
+
+    <TabControl >
+        <TabItem Width="100" Height="20" Header="CAL Info">
+
+
+
+            <Grid  Background="#C0C0C0">
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="42*"/>
+                    <RowDefinition Height="121*"/>
+                    <RowDefinition Height="41.333"/>
+                    <RowDefinition Height="67"/>
+                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="221*"/>
+                    <RowDefinition Height="75*"/>
+
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0.333,0.667">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SerialNumber" Grid.Column="1" TextChanged="SerialNumber_TextChanged" Width="200" Height="43"   HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="-0.187,0.674" />
+                    <TextBlock  FontSize="20"  Text ="Enter Serial Number: " FontWeight="Bold" Foreground="DarkSlateGray" Margin="311,0,310.667,-1" Grid.ColumnSpan="2" RenderTransformOrigin="-0.037,0.671"/>
+                    <TextBlock Name ="Thinking"  FontSize="20"  FontWeight="Bold" Foreground="Green" Grid.Column="2"/>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,0.333,0.333,0.667">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="413*" />
+                        <ColumnDefinition Width="445*" />
+                        <ColumnDefinition Width="379*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Match Point Data" FontSize="30"  FontStyle="Italic" Foreground="blue" Grid.ColumnSpan="2" Margin="0,0,413.667,-1" Grid.RowSpan="2" />
+                    <TextBlock Name ="input"  FontSize="20"  FontWeight="Bold" Foreground="Purple" Grid.Column="1" Grid.ColumnSpan="2" Margin="105.667,0,17.333,-1" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
+
+                    </TextBlock>
+
+                </Grid>
+
+
+
+
+
+                <TextBlock Grid.Row="3" Text="Material List" FontSize="30"  FontStyle="Italic" Foreground="blue" Margin="-1,3,-2.667,4.333" />
+
+                <Grid Grid.Row="2" Margin="0,4.333,0.333,20">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Grid.Column="0">
+                        <TextBlock  Text="GE NUM" FontSize="20"  FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="0">
+                        <ListView  Name="list" ItemsSource="{Binding GE}" Background="Transparent" FontSize="10" Foreground="Black" >
+
+                        </ListView>
+
+                    </ScrollViewer>
+                    <StackPanel Grid.Row="0" Grid.Column="1">
+                        <TextBlock  Text="MP Date" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="1">
+                        <ListView  Name="list2" ItemsSource="{Binding MP}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="True">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2">
+                        <TextBlock  Text="MP Cell" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="2">
+                        <ListView  Name="list3" ItemsSource="{Binding MPCell}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3">
+                        <TextBlock  Text="BME Num" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="3">
+                        <ListView  Name="list4" ItemsSource="{Binding BME}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false" >
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="0" Grid.Column="4">
+                        <TextBlock  Text="MMA Num" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="1" Grid.Column="4">
+                        <ListView  Name="list5" ItemsSource="{Binding MMA}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock  Text="Cat Num" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" Grid.Column="0">
+                        <ListView  Name="list6"  ItemsSource="{Binding CAT}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Grid.Column="1">
+                        <TextBlock  Text="Option BRD 1" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" Grid.Column="1">
+                        <ListView  Name="list7" ItemsSource="{Binding OPT1}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+
+                    <StackPanel Grid.Row="2" Grid.Column="2">
+                        <TextBlock  Text="BRD 1 Serial" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" Grid.Column="2">
+                        <ListView  Name="list8" ItemsSource="{Binding Serial1}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Grid.Column="3">
+                        <TextBlock  Text="Option BRD 2" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" Grid.Column="3">
+                        <ListView  Name="list9" ItemsSource="{Binding OPT2}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+
+                    <StackPanel Grid.Row="2" Grid.Column="4">
+                        <TextBlock  Text="BRD 2 Serial" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <ScrollViewer Grid.Row="3" Grid.Column="4">
+                        <ListView  Name="list10" ItemsSource="{Binding Serial2}" Background="Transparent" FontSize="10" Foreground="Black" ScrollViewer.CanContentScroll ="false">
+
+                        </ListView>
+                    </ScrollViewer>
+                </Grid>
+
+                <Grid Grid.Row ="4" Margin="0,1.667,0.333,5" >
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="41.333" />
+                        <RowDefinition/>
+
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,1.333">
+                        <TextBlock Text="Cat Num:" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Margin="0,1.667,0,0">
+                        <TextBlock Text="" FontSize="15" Name="mat1"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1" Margin="0,0,0,1.333">
+                        <TextBlock Text="BME Num:" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,1.667,0,0">
+                        <TextBlock Text="" FontSize="15" Name="mat2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="2" Margin="0,0,0,1.333">
+                        <TextBlock Text="Option BRD1:" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="2" Margin="0,1.667,0,0">
+                        <TextBlock Text="" FontSize="15" Name="mat3"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,0,132.333,1.333">
+                        <TextBlock Text="Option BRD2:" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" Margin="0,1.667,132.333,0">
+                        <TextBlock Text="" FontSize="15" Name="mat4"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="4" Margin="0.333,0,0.333,1.333">
+                        <TextBlock Text="MMA Num:" FontSize="20" FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="4" Margin="0.333,1.667,0.333,0">
+                        <TextBlock Text="" FontSize="15" Name="mat5"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="132.333,0,0.333,1.333">
+                        <TextBlock Text="MMA program:" FontSize="20"  FontWeight="Bold"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Margin="132.333,1.667,0.333,0">
+                        <TextBlock Text="" FontSize="15" Name="mat6"/>
+                    </StackPanel>
+
+                </Grid>
+                <Grid Grid.Row="5" Margin="0,4,0.333,3.333">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="Meter Calibration" FontSize="30"  FontStyle="Italic" Foreground="blue"/>
+                    <TextBlock Grid.Column="1" Text="Meter Accuracy" FontSize="30"  FontStyle="Italic" Foreground="blue"/>
+
+                </Grid>
+                <Grid Grid.Row="6" Margin="0,8.667,0.333,-0.333" Grid.RowSpan="2">
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="360*" />
+                        <ColumnDefinition Width="877*" />
+
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0" Margin="0,0,51,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="24*"/>
+                            <RowDefinition Height="23*"/>
+                            <RowDefinition Height="24*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="149*"  />
+                            <ColumnDefinition Width="144*"  />
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"  Grid.Row="0" Text="Meter serial Number:" FontSize="15" Margin="0,0,5.333,23" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="0" Name="serial" Text="" FontSize="15" Margin="3.667,0,-0.667,23" Grid.RowSpan="2"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="1" Text="Start Cal Date:" FontSize="15" Margin="0,0.333,50.333,0" Height="24" VerticalAlignment="Top" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="1" Name="startDate" Text="" FontSize="15" Margin="3.667,0.333,-0.667,0"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="2" Text="End Cal Date:" FontSize="15" Margin="0,0,55.333,23" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="2" Name="endDate" Text="" FontSize="15" Margin="3.667,0,-0.667,23" Grid.RowSpan="2"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="3" Text="Cat Number:" FontSize="15" Margin="0,0.333,58.333,0"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="3" Name="catGUI" Text="" FontSize="15" Margin="1.667,0.333,-0.667,0"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="4" Text="Pass/Fail:" FontSize="15" Margin="0,0,82.333,23" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="4" Name="PF" Text="" FontSize="15" Margin="3.667,0,-0.667,23" Grid.RowSpan="2"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="5" Text="Reason Rejected 1:" FontSize="15" Margin="0,0.333,20.333,0" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="0.34"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform></TextBlock>
+                        <TextBlock Grid.Column="1"  Grid.Row="5" Name="RR1" Text="" FontSize="15" Margin="2.667,0.333,-0.667,0"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="6" Text="Reason Rejected 2:" FontSize="15" Margin="0,0,20.333,0.667"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="6" Name="RR2" Text="" FontSize="15" Margin="3.667,0,-0.667,0.667"/>
+                        <TextBlock Grid.Column="0"  Grid.Row="7" Text="Reason Rejected 3:" FontSize="15" Margin="0,0.333,20.333,2"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="7" Name="RR3" Text="" FontSize="15" Margin="4.667,0.333,-0.667,2"/>
+                        <TextBlock Grid.Column="0"  Grid.Row="8" Text="WECO Pannel:" FontSize="15" Margin="0,0,52.333,0.667"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="8" Name="WECO" Text="" FontSize="15" Margin="3.667,0,-0.667,0.667"></TextBlock>
+                        <TextBlock Grid.Column="0"  Grid.Row="9" Text="" FontSize="15" Margin="0,1.333,130.333,0.667"/>
+                        <TextBlock Grid.Column="0"  Grid.Row="9" Text="" FontSize="15" Margin="0,23.333,130.333,0" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="0"  Grid.Row="11" Text="" FontSize="15" Margin="0,0,130.333,21.667" Grid.RowSpan="2"/>
+                        <TextBlock Grid.Column="0"  Grid.Row="12" Text="" FontSize="15" Margin="0,0.333,130.333,0.667"/>
+
+                        <Button Grid.Row="12" Grid.Column="0" Name ="PrevButton" Content="Previous" Click="PrevButton_Click" Margin="0,0,2.333,10" Grid.RowSpan="2" />
+                        <Button Grid.Row="12" Grid.Column="1" Name ="NextButton" Content="Next" Click="NextButton_Click" Margin="3.667,0,0.333,10" Grid.RowSpan="2" >
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="8,0,0.333,0">
+                        <Grid.ColumnDefinitions >
+                            <ColumnDefinition Width="87*" />
+                            <ColumnDefinition Width="217*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                            <ColumnDefinition Width="73*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0" Text="Meter Serial" FontSize="15" Margin="0,0,3.333,0.333"/>
+                        <TextBlock Grid.Row="0" Text=" Cal Start " FontSize="15" Margin="6.667,0,3,0.333" Grid.Column="1"/>
+                        <TextBlock Grid.Column="2" Grid.Row="0" Text="Test Step" FontSize="15" Margin="1.333,0,72.333,0.333" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Column="3" Grid.Row="0" Text="Watts A" FontSize="15" Margin="4.667,0,1.667,0.333"/>
+                        <TextBlock Grid.Column="4" Grid.Row="0" Text="V 2 A" FontSize="15" Margin="1.333,0,1,0.333"/>
+                        <TextBlock Grid.Column="5" Grid.Row="0" Text="Watts B" FontSize="15" Margin="3,0,5.667,0.333"/>
+                        <TextBlock Grid.Column="6" Grid.Row="0" Text="V 2 B" FontSize="15" Margin="4.333,0,1,0.333"/>
+                        <TextBlock Grid.Column="7" Grid.Row="0" Text="Watts C" FontSize="15" Margin="1,0,0.667,0.333"/>
+                        <TextBlock Grid.Column="8" Grid.Row="0" Text="V 2 C" FontSize="15" Margin="1.333,0,3,0.333"/>
+                        <TextBlock Grid.Column="9" Grid.Row="0" Text="WS" FontSize="15" Margin="1.333,0,1.667,0.333"/>
+
+                        <TextBlock Grid.Column="0"  FontSize="15" Name="meterSerial4" Margin="0,67,3.333,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="0" Grid.Row="2"  FontSize="15" Name="meterSerial3" Margin="0,0.333,3.333,0"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3"  FontSize="15" Name="meterSerial2" Margin="0,0,3.333,0.333"/>
+                        <TextBlock Grid.Column="0" Grid.Row="3"  FontSize="15" Name="meterSerial1" Margin="0,67,3.333,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock  FontSize="15" Name="calStart4" Margin="6.667,67,3,67" Grid.RowSpan="3" Grid.Column="1"/>
+                        <TextBlock Grid.Row="2"  FontSize="15" Name="calStart3" Margin="6.667,0.333,3,0" Grid.Column="1"/>
+                        <TextBlock Grid.Row="3"  FontSize="15" Name="calStart2" Margin="6.667,0,3,0.333" Grid.Column="1"/>
+                        <TextBlock Grid.Row="3"  FontSize="15" Name="calStart1" Margin="6.667,67,3,0.333" Grid.RowSpan="2" Grid.Column="1"/>
+
+                        <TextBlock Grid.Column="2"  FontSize="15" Name="testStep4" Margin="11,67,72.667,67" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Column="2" Grid.Row="2"  FontSize="15" Name="testStep3" Margin="11,0.333,72.667,0" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3"  FontSize="15" Name="testStep2" Margin="11,0,72.667,0.333" Grid.ColumnSpan="2"/>
+                        <TextBlock Grid.Column="2" Grid.Row="3"  FontSize="15" Name="testStep1" Margin="11,67,72.667,0.333" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+                        <TextBlock Grid.Column="3"  FontSize="15" Name="wA4" Margin="4.667,67,1.667,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="3" Grid.Row="2"  FontSize="15" Name="wA3" Margin="4.667,0.333,1.667,0"/>
+                        <TextBlock Grid.Column="3" Grid.Row="3"  FontSize="15" Name="wA2" Margin="4.667,0,1.667,0.333"/>
+                        <TextBlock Grid.Column="3" Grid.Row="3"  FontSize="15" Name="wA1" Margin="4.667,67,1.667,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="4"  FontSize="15" Name="VA4" Margin="1.333,67,1,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="4" Grid.Row="2"  FontSize="15" Name="VA3" Margin="1.333,0.333,1,0"/>
+                        <TextBlock Grid.Column="4" Grid.Row="3"  FontSize="15" Name="VA2" Margin="1.333,0,1,0.333"/>
+                        <TextBlock Grid.Column="4" Grid.Row="3"  FontSize="15" Name="VA1" Margin="1.333,67,1,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="5"  FontSize="15" Name="wB4" Margin="1,67,1.667,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="5" Grid.Row="2"  FontSize="15" Name="wB3" Margin="1,0.333,1.667,0"/>
+                        <TextBlock Grid.Column="5" Grid.Row="3"  FontSize="15" Name="wB2" Margin="1,0,1.667,0.333"/>
+                        <TextBlock Grid.Column="5" Grid.Row="3"  FontSize="15" Name="wB1" Margin="1,67,1.667,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="6"  FontSize="15" Name="VB4" Margin="4.333,67,1,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="6" Grid.Row="2"  FontSize="15" Name="VB3" Margin="4.333,0.333,1,0"/>
+                        <TextBlock Grid.Column="6" Grid.Row="3"  FontSize="15" Name="VB2" Margin="4.333,0,1,0.333"/>
+                        <TextBlock Grid.Column="6" Grid.Row="3"  FontSize="15" Name="VB1" Margin="4.333,67,1,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="7"  FontSize="15" Name="wC4" Margin="1,67,0.667,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="7" Grid.Row="2"  FontSize="15" Name="wC3" Margin="1,0.333,0.667,0"/>
+                        <TextBlock Grid.Column="7" Grid.Row="3"  FontSize="15" Name="wC2" Margin="1,0,0.667,0.333"/>
+                        <TextBlock Grid.Column="7" Grid.Row="3"  FontSize="15" Name="wC1" Margin="1,67,0.667,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="8"  FontSize="15" Name="VC4" Margin="1.333,67,3,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="8" Grid.Row="2"  FontSize="15" Name="VC3" Margin="1.333,0.333,3,0"/>
+                        <TextBlock Grid.Column="8" Grid.Row="3"  FontSize="15" Name="VC2" Margin="1.333,0,3,0.333"/>
+                        <TextBlock Grid.Column="8" Grid.Row="3"  FontSize="15" Name="VC1" Margin="1.333,67,3,0.333" Grid.RowSpan="2"/>
+
+                        <TextBlock Grid.Column="9"  FontSize="15" Name="wS4" Margin="1,67,0.333,67" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Column="9" Grid.Row="2"  FontSize="15" Name="wS3" Margin="1,0.333,0.333,0"/>
+                        <TextBlock Grid.Column="9" Grid.Row="3"  FontSize="15" Name="wS2" Margin="1,0,0.333,0.333"/>
+                        <TextBlock Grid.Column="9" Grid.Row="3"  FontSize="15" Name="wS1" Margin="1,67,0.333,0.333" Grid.RowSpan="2"/>
+
+
+
+                    </Grid>
+
+
+                </Grid>
+
+
+
+
+
+            </Grid>
+        </TabItem>
+        <TabItem Width="100" Height="20" Header="CAT Info" HorizontalAlignment="Left" Margin="0,-1,0,1">
+
+            <Grid  Background="#C0C0C0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="129*"/>
+                    <RowDefinition Height="41*"/>
+                    <RowDefinition Height="201*"/>
+                    <RowDefinition Height="231*"/>
+
+
+
+
+
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0.333,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Text="AMR Info" FontSize="30" Foreground="Blue" FontStyle="Italic"/>
+                    <TextBlock Grid.Column="1" Text="Meter Info" FontSize="30" Foreground="Blue" FontStyle="Italic"/>
+
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,3,0.333,0.333">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110*"/>
+                            <ColumnDefinition Width="509*"/>
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Meter Type:" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0,315.667,0.333"/>
+                        <TextBlock Grid.Column="0" Text="Base:" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,71,315.667,71" Grid.RowSpan="3"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Option BRD:" FontSize="15" FontWeight="Bold" Grid.ColumnSpan="2" Margin="0,0.333,315.667,0"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Name="meterType" FontSize="15"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Name="baseType" FontSize="15"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Name="brd" FontSize="15"/>
+                    </Grid>
+
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="AMR Type:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="AMR Serial:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="GE Serial:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Customer Serial:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="0" Grid.Column="2" Text="Status:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="1" Grid.Column="2" Text="Cal  Start Time:" FontSize="15"  FontWeight="Bold"/>
+                        <TextBlock Grid.Row="2" Grid.Column="2" Text="Reject Code:" FontSize="15"  FontWeight="Bold"/>
+
+                        <TextBlock Grid.Row="0" Grid.Column="1" Name="amrtype" FontSize="15" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Name="AMRSerial" FontSize="15"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Name="GESerial" FontSize="15"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Name="CS" FontSize="15"/>
+                        <TextBlock Grid.Row="0" Grid.Column="3" Name="StatusAMR" FontSize="15"/>
+                        <TextBlock Grid.Row="1" Grid.Column="3" Name="time" FontSize="15"/>
+                        <TextBlock Grid.Row="2" Grid.Column="3" Name="Reason" FontSize="15"/>
+
+                        <Button  Grid.Column="0" Grid.Row="4" Name="PreviousAMR" Content="Previous" Click="PreviousAMR_Click"/>
+                        <Button Grid.Column="1"  Grid.Row="4" Name="NextAMR" Content="Next" Click="NextAMR_Click"/>
+
+
+
+
+
+
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="0,0.667,0.333,6.667">
+                    <TextBlock Text="Pack Check Info" FontSize="30" Foreground="Blue" FontStyle="Italic"/>
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="0,13.333,0.333,1.333">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Ge Num:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="AMR Serial:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Cat Num:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Check Time:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Meter Bar Code:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="Status" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Reason Rejected:" FontSize="15"  FontWeight="Bold"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Work Station:" FontSize="15" FontWeight="Bold"/>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Name="ge" FontSize="15"/>
+                    <TextBlock Grid.Row="1" Grid.Column="1" Name="amr" FontSize="15"/>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Name="cat" FontSize="15"/>
+                    <TextBlock Grid.Row="3" Grid.Column="1" Name="timePCK" FontSize="15"/>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Name="bar" FontSize="15"/>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Name="status" FontSize="15"/>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Name="rej" FontSize="15"/>
+                    <TextBlock Grid.Row="3" Grid.Column="3" Name="station" FontSize="15"/>
+
+                    <Grid Grid.Row="4" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button  Grid.Column="0" Name="Previous" Content="Previous" Click="Previous_Click"  />
+                        <Button Grid.Column="1" Name="Next" Content="Next" Click="Next_Click"/>
+
+
+                    </Grid>
+
+
+
+
+                </Grid>
+
+                <Grid Grid.Row="4" Margin="0,20.667,0.333,-161.333" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column ="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="166*"/>
+                            <ColumnDefinition Width="453*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="28*"/>
+                            <RowDefinition Height="79*"/>
+
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Build Time:" FontSize="30" Margin="0,0,1,0"/>
+                        <TextBlock Grid.Column="1" Grid.Row="0" Text="Days/Hours/Minutes/Seconds" FontSize="20" Margin="0,0,-0.333,0"/>
+                        <TextBlock Grid.Column="1"  Grid.Row="1" Foreground="Green" Name ="MPtoPCK" Margin="0,3,-0.333,0" FontSize="30"/>
+
+
+
+
+
+                    </Grid>
+
+
+
+                    <StackPanel Grid.Column="2">
+
+                        <WindowsFormsHost x:Name="host" Height="215" Margin="0,0,-0.333,0" Foreground="#C0C0C0"  >
+                            <DVC:Chart x:Name="MyWinformChart" Dock="Fill"  Size="20,70" >
+                                <DVC:Chart.Series>
+                                    <DVC:Series Name="series" ChartType="Line" BorderWidth="5" />
+                                </DVC:Chart.Series>
+                                <DVC:Chart.ChartAreas>
+                                    <DVC:ChartArea   />
+                                </DVC:Chart.ChartAreas>
+                            </DVC:Chart>
+                        </WindowsFormsHost>
+
+
+
+                    </StackPanel>
+
+
+
+
+
+                </Grid>
+
+
+
+
+
+
+
+            </Grid>
+
+
+
+        </TabItem>
+        <TabItem Width="100" Height="20" Header="Error Codes" >
+            <Grid Background="#C0C0C0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="46*"/>
+                    <RowDefinition Height="216*"/>
+                    <RowDefinition Height="381*"/>
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="0,0,0.333,2" Background="#C0C0C0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text=" Calibration Error Codes per CAT NO" FontSize="30" Foreground="Blue" FontStyle="Italic"/>
+                    <TextBlock Grid.Column="1" Text=" Pack Check Error Codes per CAT NO" FontSize="30" Foreground="Blue" FontStyle="Italic"/>
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,0,0.333,377.667" Grid.RowSpan="2" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+
+                        <WindowsFormsHost x:Name="host2" Height="215" Margin="0,0,-0.333,0" Foreground="#C0C0C0" >
+                            <DVC:Chart x:Name="MyWinformChart2" Dock="Fill" Text="dfff">
+                                <DVC:Chart.Series>
+                                    <DVC:Series Name="series2" ChartType="Pie" BorderWidth="3" />
+                                </DVC:Chart.Series>
+                                <DVC:Chart.ChartAreas>
+                                    <DVC:ChartArea   />
+                                </DVC:Chart.ChartAreas>
+                            </DVC:Chart>
+                        </WindowsFormsHost>
+
+
+
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+
+                        <WindowsFormsHost x:Name="host3" Height="215" Margin="0,0,-0.333,0" Foreground="#C0C0C0" >
+                            <DVC:Chart x:Name="MyWinformChart3" Dock="Fill" Text="dfff">
+                                <DVC:Chart.Series>
+                                    <DVC:Series Name="series3" ChartType="Pie" BorderWidth="3" />
+                                </DVC:Chart.Series>
+                                <DVC:Chart.ChartAreas>
+                                    <DVC:ChartArea   />
+                                </DVC:Chart.ChartAreas>
+                            </DVC:Chart>
+                        </WindowsFormsHost>
+
+
+
+                    </StackPanel>
+
+                </Grid>
+                <Grid Grid.Row="2" Margin="0,19,0.333,-0.333">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="101*"/>
+                        <ColumnDefinition Width="1136*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="1" Name ="errorCode" FontSize="15" Margin="31.667,0,0.333,71.667" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Name ="desc" FontSize="15" Margin="31.667,0.333,0.333,72.333" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name ="sol1" FontSize="15" Margin="31.667,0.333,0.333,0.333"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Name ="sol2" FontSize="15" Margin="31.667,72.333,0.333,0.333" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Name ="sol3" FontSize="15" Margin="31.667,71.667,0.333,0" Grid.RowSpan="2"></TextBlock>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text ="Error Code:" FontSize="15" FontWeight="Bold" Margin="0,0,0.333,71.667" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text ="Description:" FontSize="15" FontWeight="Bold" Margin="0,0.333,0.333,72.333" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text ="Solution 1" FontSize="15" FontWeight="Bold" Margin="0,0.333,0.333,0.333"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text ="Solution 2" FontSize="15" FontWeight="Bold" Margin="0,72.333,0.333,0.333" Grid.RowSpan="2"></TextBlock>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text ="Solution 3:" FontSize="15" FontWeight="Bold" Margin="0,71.667,0.333,0" Grid.RowSpan="2"></TextBlock>
+
+
+                </Grid>
+
+
+
+
+            </Grid>
+
+
+        </TabItem>
+    </TabControl>
+</Window>
